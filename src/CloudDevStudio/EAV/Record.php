@@ -42,7 +42,7 @@ class Record implements IRecord
      */
     public function updateSingleAttribute(string $attribute_name, $new_value)
     {
-        
+
     }
 
     /**
