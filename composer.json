@@ -1,5 +1,5 @@
 {
-  "name": "CloudDevStudio/eav-library-laravel",
+  "name": "cloud-dev-studio/eav-library-laravel",
   "type": "library",
   "description": "EAV Library Implementation for Laravel",
   "keywords": ["eav", "laravel"],
