@@ -7,14 +7,16 @@
  */
 
 namespace CloudDevStudio\EAV;
+use Illuminate\Database\Eloquent\Model;
 
-
-class Entity implements IEntity
+class Entity extends Model implements IEntity
 {
 
-    public function __construct()
-    {
+    protected $table;
 
+    public function __construct($entity_name)
+    {
+        $this->table = $entity_name;
     }
     /**
      *
