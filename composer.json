@@ -1,0 +1,26 @@
+{
+  "name": "CloudDevStudio/eav-library-laravel",
+  "type": "library",
+  "description": "EAV Library Implementation for Laravel",
+  "keywords": ["eav", "laravel"],
+  "homepage": "http://www.cloudds.mx/",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Bernardo Pineda",
+      "email": "_@bernardopineda.mx",
+      "homepage": "https://github.com/bpineda"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.0"
+  },
+  "autoload": {
+    "classmap": [
+      "src/"
+    ]
+  }
+}
