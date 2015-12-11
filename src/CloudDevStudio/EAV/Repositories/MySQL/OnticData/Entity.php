@@ -13,6 +13,8 @@ class Entity extends Model implements EntityInterface
 {
 
     /**
+     * This function gets the entity and all the attributes in it.
+     *
      * @param $entityTypeId
      * @param $entityId
      * @return mixed
