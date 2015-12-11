@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 class Attribute implements AttributeInterface
 {
     /**
+     * Gets the metadata related to this attribute.
      * @param $entityTypeId
      * @param $attributeId
      */
@@ -23,6 +24,7 @@ class Attribute implements AttributeInterface
     }
 
     /**
+     * Gets the entity id related to this attribute
      * @param $attributeId
      */
     public function getEntityId($attributeId)
