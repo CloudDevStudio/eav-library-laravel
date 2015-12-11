@@ -33,6 +33,8 @@ class EntityType implements EntityTypeInterface
     }
 
     /**
+     * Returns true when entity has that attribute related
+     * false otherwise
      * @param $entityTypeId
      * @param $attributeName
      * @return mixed
@@ -43,6 +45,7 @@ class EntityType implements EntityTypeInterface
     }
 
     /**
+     * Gets the list of entity types
      * @param array $filters
      * @return mixed
      */
