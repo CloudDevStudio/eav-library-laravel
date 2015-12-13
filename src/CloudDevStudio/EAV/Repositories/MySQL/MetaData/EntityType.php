@@ -19,10 +19,9 @@ class EntityType implements EntityTypeInterface
      */
     public function getMetaData($entityTypeId)
     {
-       $query = DB::select(
-           'select *  from eav_entity_type where entity_id = :id',
-           ['id' => $entityTypeId]
-       );
+        $query = DB::table('eav_entity_type')
+            ->where('entity_type_id', $entityTypeId)
+            ->first();
         return $query;
     }
 
@@ -32,7 +31,11 @@ class EntityType implements EntityTypeInterface
      */
     public function getAttributes($entityTypeId)
     {
+        $query = DB::table('eav_attributes')
+            ->where('entity_type_id', $entityTypeId)
+            ->first();
 
+        return $query;
     }
 
     /**
@@ -44,7 +47,16 @@ class EntityType implements EntityTypeInterface
      */
     public function hasAttribute($entityTypeId, $attributeName)
     {
+        $query = DB::table('eav_attributes')
+            ->where('entity_type_id', $entityTypeId)
+            ->where('attribute_codename', $attributeName)
+            ->first();
 
+        if (count($query) > 0) {
+            return true;
+        }
+
+        return false;
     }
 
     /**

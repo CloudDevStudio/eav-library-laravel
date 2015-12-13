@@ -20,6 +20,8 @@ class Value
     protected $order;
     protected $active;
 
+    protected $attribute;
+
     /**
      * @return mixed
      */
