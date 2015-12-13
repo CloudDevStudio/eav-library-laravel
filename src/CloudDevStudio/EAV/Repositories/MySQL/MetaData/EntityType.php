@@ -8,8 +8,7 @@
 
 namespace CloudDevStudio\EAV;
 
-
-use Illuminate\Support\Facades\DB;
+use DB;
 
 class EntityType implements EntityTypeInterface
 {
@@ -20,7 +19,10 @@ class EntityType implements EntityTypeInterface
      */
     public function getMetaData($entityTypeId)
     {
-
+        $query = DB::table('eav_entity_type')
+            ->where('entity_type_id', $entityTypeId)
+            ->first();
+        return $query;
     }
 
     /**
@@ -29,20 +31,36 @@ class EntityType implements EntityTypeInterface
      */
     public function getAttributes($entityTypeId)
     {
+        $query = DB::table('eav_attributes')
+            ->where('entity_type_id', $entityTypeId)
+            ->first();
 
+        return $query;
     }
 
     /**
+     * Returns true when entity has that attribute related
+     * false otherwise
      * @param $entityTypeId
      * @param $attributeName
      * @return mixed
      */
     public function hasAttribute($entityTypeId, $attributeName)
     {
+        $query = DB::table('eav_attributes')
+            ->where('entity_type_id', $entityTypeId)
+            ->where('attribute_codename', $attributeName)
+            ->first();
 
+        if (count($query) > 0) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
+     * Gets the list of entity types
      * @param array $filters
      * @return mixed
      */

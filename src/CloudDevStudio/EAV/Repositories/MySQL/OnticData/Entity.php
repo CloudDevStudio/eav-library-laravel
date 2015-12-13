@@ -13,6 +13,8 @@ class Entity extends Model implements EntityInterface
 {
 
     /**
+     * This function gets the entity and all the attributes in it.
+     *
      * @param $entityTypeId
      * @param $entityId
      * @return mixed
@@ -23,10 +25,15 @@ class Entity extends Model implements EntityInterface
     }
 
     /**
+     * Function to update entity, pass an array of attributes with the
+     * codename as key.
+     *
+     *
      * @param $entityTypeId
      * @param $entityId
-     * @param $attributes
-     * @param bool|false $all
+     * @param $attributes array of attributes
+     * @param bool|false $all if true will overwrite the entire document
+     * if false it will be update only attributes existing in attributes parameter
      * @return mixed
      */
     public function updateEntity($entityTypeId, $entityId, $attributes, $all = false)
@@ -36,6 +43,7 @@ class Entity extends Model implements EntityInterface
 
 
     /**
+     * Function to get all relations and entities related to the entity
      * @param $entityTypeId
      * @param $entityId
      * @return mixed
@@ -46,6 +54,7 @@ class Entity extends Model implements EntityInterface
     }
 
     /**
+     * Get the parent entity
      * @param $entityTypeId
      * @param $entityId
      * @return mixed
@@ -56,6 +65,7 @@ class Entity extends Model implements EntityInterface
     }
 
     /**
+     * Get the childs in the same table structure
      * @param $entityTypeId
      * @param $entityId
      * @return mixed
