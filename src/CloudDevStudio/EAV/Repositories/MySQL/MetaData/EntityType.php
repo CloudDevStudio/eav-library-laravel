@@ -8,7 +8,7 @@
 
 namespace CloudDevStudio\EAV;
 
-
+use DB;
 use Illuminate\Support\Facades\DB;
 
 class EntityType implements EntityTypeInterface
@@ -20,7 +20,8 @@ class EntityType implements EntityTypeInterface
      */
     public function getMetaData($entityTypeId)
     {
-
+       $query = DB::select('select *  from eav_entity_type where entity_id = ? ',[$entityTypeId]);
+        return $query;
     }
 
     /**
