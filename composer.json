@@ -7,10 +7,16 @@
   "license": "MIT",
   "authors": [
     {
+      "name": "Omar Alvarado",
+      "email": "_@omaralvarado.mx",
+      "homepage": "https://github.com/omaralvaradoluna"
+    },
+    {
       "name": "Bernardo Pineda",
       "email": "_@bernardopineda.mx",
       "homepage": "https://github.com/bpineda"
     }
+
   ],
   "require": {
     "php": ">=5.5.0"
