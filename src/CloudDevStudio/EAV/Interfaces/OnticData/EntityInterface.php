@@ -1,6 +1,7 @@
 <?php
 
-namespace CloudDevStudio\EAV;
+//namespace CloudDevStudio\EAV\Interfaces\OnticData;
+namespace CloudDevStudio\EAV\Interfaces\OnticData;
 
 interface EntityInterface
 {

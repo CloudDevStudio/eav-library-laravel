@@ -6,21 +6,32 @@
  * Time: 12:35 AM
  */
 
-namespace CloudDevStudio\EAV;
+namespace CloudDevStudio\EAV\Repositories\MySQL\OnticData;
+
 use Illuminate\Database\Eloquent\Model;
+use CloudDevStudio\EAV\Interfaces\OnticData\EntityInterface;
 
-class Entity extends Model implements EntityInterface
+class Entity implements EntityInterface
 {
+    protected $entity_id;
+    protected $entity_type_id;
+    protected $entityType;
 
-    /**
-     * This function gets the entity and all the attributes in it.
-     *
-     * @param $entityTypeId
-     * @param $entityId
-     * @return mixed
-     */
+    public function __construct()
+    {
+
+    }
+
+
     public function getEntity($entityTypeId, $entityId)
     {
+        $meta = $this->entity_type->getMetaData($entityTypeId);
+        $query = DB::table('entities')
+            ->where('entity_id', $entityId)
+            ->where('entity_type_id', $entityTypeId)
+            ->first();
+
+        $attributes = $this->getAttributes();
 
     }
 
@@ -50,7 +61,7 @@ class Entity extends Model implements EntityInterface
      */
     public function getRelations($entityTypeId, $entityId)
     {
-
+        return "dsfd";
     }
 
     /**
