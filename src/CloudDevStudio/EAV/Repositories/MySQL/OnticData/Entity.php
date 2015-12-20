@@ -8,20 +8,36 @@
 
 namespace CloudDevStudio\EAV\Repositories\MySQL\OnticData;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use CloudDevStudio\EAV\Interfaces\OnticData\EntityInterface;
 
 class Entity implements EntityInterface
 {
+    const REGISTER_ACTIVE = 1;
+
     protected $entity_id;
     protected $entity_type_id;
     protected $entityType;
+
 
     public function __construct()
     {
 
     }
 
+    /**
+     *
+     */
+    public function getEntities()
+    {
+
+        $query = DB::table('eav_entity_type')
+            ->where('entity_type_status', self::REGISTER_ACTIVE)
+            ->get();
+
+        return $query;
+
+    }
 
     public function getEntity($entityTypeId, $entityId)
     {

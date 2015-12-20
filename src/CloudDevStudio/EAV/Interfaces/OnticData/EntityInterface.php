@@ -47,4 +47,9 @@ interface EntityInterface
      * @return mixed
      */
     public function getChilds($entityTypeId, $entityId);
+
+    /**
+     * @return mixed
+     */
+    public function getEntities();
 }
