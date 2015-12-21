@@ -2,7 +2,7 @@
 
 namespace CloudDevStudio\EAV\Interfaces\MetaData;
 
-interface AttributeMetaInterface
+interface AttributeInterface
 {
     /**
      * Gets the metadata related to this attribute

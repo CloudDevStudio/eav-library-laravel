@@ -5,12 +5,6 @@ namespace CloudDevStudio\EAV\Interfaces\MetaData;
 interface EntityTypeInterface
 {
 
-    /**
-     * Function to get entity structure
-     * @param $entityTypeId
-     * @return mixed
-     */
-    public function getMetaData($entityTypeId);
 
     /**
      * Gets the list of attributes related to this entity type

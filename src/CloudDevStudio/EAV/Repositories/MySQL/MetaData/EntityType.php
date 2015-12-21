@@ -11,7 +11,6 @@ namespace CloudDevStudio\EAV\Repositories\MySQL\MetaData;
 use CloudDevStudio\EAV\Repositories\MySQL\MetaData\Attribute;
 use Illuminate\Support\Facades\DB;
 use CloudDevStudio\EAV\Interfaces\MetaData\EntityTypeInterface;
-use CloudDevStudio\EAV\Repositories\MySQL\MetaData\AttributeMeta;
 
 class EntityType implements EntityTypeInterface
 {
@@ -22,7 +21,7 @@ class EntityType implements EntityTypeInterface
      */
     protected $attributeMeta;
 
-    public function __construct(AttributeMeta $attributeMeta)
+    public function __construct(Attribute $attributeMeta)
     {
 
         $this->attributeMeta = $attributeMeta;
@@ -33,7 +32,7 @@ class EntityType implements EntityTypeInterface
      * @param $entityTypeId
      * @return mixed
      */
-    public function getMetaData($entityTypeId)
+    public function getMeta($entityTypeId)
     {
         $meta = [];
 

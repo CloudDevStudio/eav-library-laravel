@@ -27,33 +27,38 @@ class Entity implements EntityInterface
     }
 
     /**
-     *
+     * Function that obtains list of entities of a type passed
      */
-    public function getEntities()
+    public function getEntities($entityType)
     {
-
-        $meta = $this->entityType->getMetaData(1);
-        return $meta;
-        $query = DB::table('eav_entity_type')
+        // @todo-traer entidades concreetas
+        /*$query = DB::table('eav_entity_type')
             ->where('entity_type_status', self::REGISTER_ACTIVE)
-            ->get();
+            ->get();**/
 
-        return $query;
+
+        return true;
 
     }
 
     public function getEntity($entityTypeId, $entityId)
     {
-        return "hola";
-        /*
-        $meta = $this->entity_type->getMetaData($entityTypeId);
-        $query = DB::table('entities')
+        $data['meta'] = $this->getEntityMeta($entityTypeId);
+
+
+        $data['ontic'] = DB::table('entities')
             ->where('entity_id', $entityId)
             ->where('entity_type_id', $entityTypeId)
             ->first();
 
-        $attributes = $this->getAttributes();*/
+        $data['ontic']['values'] = "test";
+        return $data;
 
+    }
+
+    public function getEntityMeta($entityTypeId)
+    {
+        return $this->entityType->getMeta($entityTypeId);
     }
 
     /**

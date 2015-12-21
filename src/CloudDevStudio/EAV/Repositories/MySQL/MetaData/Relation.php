@@ -6,12 +6,13 @@
  * Time: 12:35 AM
  */
 
-namespace CloudDevStudio\EAV;
+namespace CloudDevStudio\EAV\Repositories\MySQL;
 
 
-use DB;
+use Illuminate\Support\Facades\DB;
+use CloudDevStudio\EAV\Interfaces\MetaData\RelationInterface;
 
-class Relation
+class Relation implements RelationInterface
 {
     /**
      * Gets the metadata related to this relation

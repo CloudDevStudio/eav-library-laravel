@@ -50,5 +50,5 @@ interface EntityInterface
     /**
      * @return mixed
      */
-    public function getEntities();
+    public function getEntities($entityType);
 }

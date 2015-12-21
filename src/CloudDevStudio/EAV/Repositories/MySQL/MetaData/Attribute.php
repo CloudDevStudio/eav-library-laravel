@@ -10,9 +10,9 @@ namespace CloudDevStudio\EAV\Repositories\MySQL\MetaData;
 
 
 use Illuminate\Support\Facades\DB;
-use CloudDevStudio\EAV\Interfaces\MetaData\AttributeMetaInterface;
+use CloudDevStudio\EAV\Interfaces\MetaData\AttributeInterface;
 
-class AttributeMeta implements AttributeMetaInterface
+class Attribute implements AttributeInterface
 {
     const REGISTER_ACTIVE = 1;
     /**
@@ -25,6 +25,7 @@ class AttributeMeta implements AttributeMetaInterface
         $query = DB::table('eav_attributes')
             ->where('attribute_id', $attributeId)
             ->where('entity_type_id', $entityTypeId)
+            ->where('attribute_status', self::REGISTER_ACTIVE)
             ->first();
 
         return $query;
