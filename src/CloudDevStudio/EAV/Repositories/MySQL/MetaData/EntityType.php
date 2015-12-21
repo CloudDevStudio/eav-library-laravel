@@ -6,12 +6,28 @@
  * Time: 12:35 AM
  */
 
-namespace CloudDevStudio\EAV;
+namespace CloudDevStudio\EAV\Repositories\MySQL\MetaData;
 
-use DB;
+use CloudDevStudio\EAV\Repositories\MySQL\MetaData\Attribute;
+use Illuminate\Support\Facades\DB;
+use CloudDevStudio\EAV\Interfaces\MetaData\EntityTypeInterface;
+use CloudDevStudio\EAV\Repositories\MySQL\MetaData\AttributeMeta;
 
 class EntityType implements EntityTypeInterface
 {
+    const REGISTER_ACTIVE = 1;
+
+    /**
+     * @var ;
+     */
+    protected $attributeMeta;
+
+    public function __construct(AttributeMeta $attributeMeta)
+    {
+
+        $this->attributeMeta = $attributeMeta;
+    }
+
     /**
      * Function to get entity structure
      * @param $entityTypeId
@@ -19,10 +35,19 @@ class EntityType implements EntityTypeInterface
      */
     public function getMetaData($entityTypeId)
     {
-       /* $query = DB::table('eav_entity_type')
-            ->where('entity_type_id', $entityTypeId)
-            ->first();
-        return $query;*/
+        $meta = [];
+
+        $meta['eav_entity_type'] = DB::table('eav_entity_type')
+            ->where('entity_type_status', self::REGISTER_ACTIVE)
+            ->get();
+
+
+        $meta['eav_attributes'] = self::getAttributes($entityTypeId);
+
+
+        return $meta;
+
+
     }
 
     /**
@@ -31,11 +56,7 @@ class EntityType implements EntityTypeInterface
      */
     public function getAttributes($entityTypeId)
     {
-       /* $query = DB::table('eav_attributes')
-            ->where('entity_type_id', $entityTypeId)
-            ->first();
-
-        return $query;*/
+        return $this->attributeMeta->getAttributesMeta($entityTypeId);
     }
 
     /**
@@ -66,6 +87,11 @@ class EntityType implements EntityTypeInterface
      */
     public function getList($filters = array())
     {
+        $query = DB::table('eav_entity_type')
+            ->where('entity_type_status', self::REGISTER_ACTIVE)
+            ->get();
+
+        return $query;
 
     }
 }

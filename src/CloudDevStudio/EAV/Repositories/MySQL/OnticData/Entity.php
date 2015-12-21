@@ -10,6 +10,7 @@ namespace CloudDevStudio\EAV\Repositories\MySQL\OnticData;
 
 use Illuminate\Support\Facades\DB;
 use CloudDevStudio\EAV\Interfaces\OnticData\EntityInterface;
+use CloudDevStudio\EAV\Repositories\MySQL\MetaData\EntityType;
 
 class Entity implements EntityInterface
 {
@@ -20,9 +21,9 @@ class Entity implements EntityInterface
     protected $entityType;
 
 
-    public function __construct()
+    public function __construct(EntityType $entityType)
     {
-
+        $this->entityType = $entityType;
     }
 
     /**
@@ -31,6 +32,8 @@ class Entity implements EntityInterface
     public function getEntities()
     {
 
+        $meta = $this->entityType->getMetaData(1);
+        return $meta;
         $query = DB::table('eav_entity_type')
             ->where('entity_type_status', self::REGISTER_ACTIVE)
             ->get();
@@ -41,13 +44,15 @@ class Entity implements EntityInterface
 
     public function getEntity($entityTypeId, $entityId)
     {
+        return "hola";
+        /*
         $meta = $this->entity_type->getMetaData($entityTypeId);
         $query = DB::table('entities')
             ->where('entity_id', $entityId)
             ->where('entity_type_id', $entityTypeId)
             ->first();
 
-        $attributes = $this->getAttributes();
+        $attributes = $this->getAttributes();*/
 
     }
 

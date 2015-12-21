@@ -1,6 +1,6 @@
 <?php
 
-namespace CloudDevStudio\EAV;
+namespace CloudDevStudio\EAV\Interfaces\MetaData;
 
 interface EntityTypeInterface
 {

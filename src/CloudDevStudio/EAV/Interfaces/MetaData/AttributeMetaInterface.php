@@ -1,8 +1,8 @@
 <?php
 
-namespace CloudDevStudio\EAV;
+namespace CloudDevStudio\EAV\Interfaces\MetaData;
 
-interface AttributeInterface
+interface AttributeMetaInterface
 {
     /**
      * Gets the metadata related to this attribute

@@ -6,13 +6,15 @@
  * Time: 12:35 AM
  */
 
-namespace CloudDevStudio\EAV;
+namespace CloudDevStudio\EAV\Repositories\MySQL\MetaData;
 
 
-use DB;
+use Illuminate\Support\Facades\DB;
+use CloudDevStudio\EAV\Interfaces\MetaData\AttributeMetaInterface;
 
-class Attribute implements AttributeInterface
+class AttributeMeta implements AttributeMetaInterface
 {
+    const REGISTER_ACTIVE = 1;
     /**
      * Gets the metadata related to this attribute.
      * @param $entityTypeId
@@ -45,5 +47,15 @@ class Attribute implements AttributeInterface
             return $attributeId->attribute_entity_type_id;
         }
 
+    }
+
+    public function getAttributesMeta($entityTypeId)
+    {
+        $attributes = DB::table('eav_attributes')
+            ->where('attribute_entity_type_id', $entityTypeId)
+            ->where('attribute_status', self::REGISTER_ACTIVE)
+            ->get();
+
+        return $attributes;
     }
 }
