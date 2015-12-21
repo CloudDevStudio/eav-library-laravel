@@ -7,7 +7,7 @@
  * Time: 12:35 AM
  */
 
-namespace CloudDevStudio\EAV;
+namespace CloudDevStudio\EAV\Repositories\MySQL\OnticData;
 
 class Value
 {

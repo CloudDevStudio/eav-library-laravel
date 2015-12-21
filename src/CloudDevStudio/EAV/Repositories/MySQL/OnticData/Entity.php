@@ -8,6 +8,7 @@
 
 namespace CloudDevStudio\EAV\Repositories\MySQL\OnticData;
 
+use CloudDevStudio\EAV\Value;
 use Illuminate\Support\Facades\DB;
 use CloudDevStudio\EAV\Interfaces\OnticData\EntityInterface;
 use CloudDevStudio\EAV\Repositories\MySQL\MetaData\EntityType;
@@ -24,6 +25,7 @@ class Entity implements EntityInterface
     public function __construct(EntityType $entityType)
     {
         $this->entityType = $entityType;
+
     }
 
     /**
@@ -51,8 +53,27 @@ class Entity implements EntityInterface
             ->where('entity_type_id', $entityTypeId)
             ->first();
 
-        $data['ontic']['values'] = "test";
+        $data['ontic']->values = $this->getAttributeValues($entityTypeId, $entityId, $data['meta']);
         return $data;
+
+    }
+
+    public function getAttributeValues($entityType, $entityId, $meta = false)
+    {
+        if (!$meta) {
+            $meta = $this->getEntityMeta($entityType);
+        }
+
+        $values = [];
+        foreach ($meta['eav_attributes'] as $key => $attribute) {
+            $values[$attribute->attribute_name] = DB::table($attribute->attribute_table)
+                ->where('entity_id', $entityId)
+                ->where('entity_type_id', $entityType)
+                ->where('attribute_id', $attribute->attribute_id)
+                ->first()->value;
+        }
+
+        return $values;
 
     }
 
